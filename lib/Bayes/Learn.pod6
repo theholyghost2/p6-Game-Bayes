@@ -1,0 +1,88 @@
+=begin Bayes-Learn
+
+=head1 Action.pm6 - Loss functions 
+
+In Action.pm6 there are 2 loss functions, a loss function calculates
+the difference in probabilities.
+
+There are 2 of them : Loss and BayesianLoss. A loss is >= 0.
+
+Loss($theta, $a) gives the difference in loss respectively when one chance
+is bigger than the other, a sort of variance between the action $a and a 
+probability $theta.	
+
+BayesianLoss($believedp), $believedp is about an action between [0,1]
+Bayesian Expected Loss is E[A] * Loss(p,a) of action a
+Integral 0->a (2*(a-p)) where p is a distribution
++
+Integral a->1 (p-a) where p is the same distribution
+So Integral 0->1 is the Bayes Loss value. Again, this is a positive value.
+
+NOTE: The integral is not correct, this package was made for games, which
+even in these days, means speed. It is approximated with a sum, where the 
+Riemann sum equal to this integral is again approximated without the minus 
+of Integral b->a F(b)-F(a), which would be the definite integral.
+Also, the conditional probabilities are approximated.
+
+RiskCondP($m, $n) is the same integral as above but with an interfered 
+calculation of the conditional probability, meaning that it is not 
+approximated. $m and $n are indices in the superclass distribution
+(Mathx::Stat::DistributionPopulation).
+
+=head2 Hypothesis.pm6 functions
+
+A Hypothesis is a distribution of probabilities (Mathx::Stat module, 
+DistributionPopulation.pm6), each hypothesis is a probability in that list
+of probabilities, ready for use in e.g. a Hidden Markov Model. 
+
+hMAPindex(@condps, $hidx) calculates MAP, maximum a posteriori on one hypothesis
+$hidx is the hypothesis (probability) index in the distributionpopulation.
+@condps is a list of conditional probabilities needed for the Bayes 
+functionality in this. 
+
+hMap(@conps) is a brute force MAP (Maximum a Posteriori) learner, where
+@condps is a list of conditional probabilities for the needed Bayes function.
+It calculates a maximum with the use of the probability distribution,
+its super class of Mathx::Stat::DistributionPopulation.
+
+hML(@condps) calculates an argmax based on a variance of the superclass 
+distribution. 
+hML = argmax (D|h) = argmax Product(p(d_i,h)), where d_i is the indexed
+probability distribution.
+
+=head3 LossFunction.pm6
+
+This has loss and BayesianLoss methods based upon a hypothesis 
+(Hypothesis.pm6), these 2 functions work as described above in Action.pm6.
+
+=head4 DecisionRule.pm6, Risk functions
+
+decide-on-risk($action) caclculates the BayesianLoss on a randomly selected
+probability, on Bayes::Learn::Action $action, where the believed chance
+is in [0,1] = the selected probability out of its attribute, a 
+Mathx::Stat::DistributionPopulation. 
+
+=head5 Strategy.pm6
+
+A Strategy has a Mathx::Stat::DistributionPopulation superclass.
+The method minimax(@condps) gives a minimax value, to be used in the infimum, 
+for a minimum probability of strategies. It returns the supremum of the
+BayesianLoss of each strategy.
+
+=head6 End notes and Bibliography
+
+Most of this module is not about Bayesian Inference, but about decision theory.
+The MAP (maximum a posteriori) is the learning system of probability
+distributions. HMMs (Hidden Markov Models) can also be based on the same
+system, especially with ticks and distributions of antrerior and posterior
+chances in a Baum-Welch algorithm. 
+
+Mathx::Stat documentation can be read to understand more of the innards
+of this system.
+
+This package is based upon the following book :
+"Statistical Decision Theory and Bayesian Analysis" -- James O. Berger.
+
+The MAP (maximum a posteriori) methods were found with a google search.
+
+=end Bayes-Learn
