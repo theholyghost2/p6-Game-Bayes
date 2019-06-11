@@ -16,11 +16,11 @@ plan $num-tests;
 # .... tests 
 #  
 
-use-ok Game::Bayes::Action;
-use-ok Game::Bayes::DecisionRule;
-use-ok Game::Bayes::Hypothesis;
-use-ok Game::Bayes::LossFunction;
-use-ok Game::Bayes::RiskFunction;
-use-ok Game::Bayes::Strategy;
+use-ok "Game::Bayes::Action";
+use-ok "Game::Bayes::DecisionRule";
+use-ok "Game::Bayes::Hypothesis";
+use-ok "Game::Bayes::LossFunction";
+use-ok "Game::Bayes::RiskFunction";
+use-ok "Game::Bayes::Strategy";
 
 done-testing;  # optional with 'plan' 
