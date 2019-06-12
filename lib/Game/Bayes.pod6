@@ -1,4 +1,4 @@
-=begin Game-Bayes
+=begin Game-Bayes 0.2
 
 =head1 Action.pm6 - Loss functions 
 
