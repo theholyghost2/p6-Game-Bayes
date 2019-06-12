@@ -1,6 +1,15 @@
-=begin Game-Bayes 0.2
+=begin pod 
 
-=head1 Action.pm6 - Loss functions 
+=NAME    Game::Bayes 
+=AUTHOR  The Holy Ghost 
+=VERSION 0.2
+
+=head1 Description
+
+This is a Bayesian learning and inference package built with approximate
+algorithms for speed.
+
+=head2 Action.pm6 - Loss functions 
 
 In Action.pm6 there are 2 loss functions, a loss function calculates
 the difference in probabilities.
@@ -29,7 +38,7 @@ calculation of the conditional probability, meaning that it is not
 approximated. $m and $n are indices in the superclass distribution
 (Mathx::Stat::DistributionPopulation).
 
-=head2 Hypothesis.pm6 functions
+=head3 Hypothesis.pm6 functions
 
 A Hypothesis is a distribution of probabilities (Mathx::Stat module, 
 DistributionPopulation.pm6), each hypothesis is a probability in that list
@@ -50,26 +59,26 @@ distribution.
 hML = argmax (D|h) = argmax Product(p(d_i,h)), where d_i is the indexed
 probability distribution.
 
-=head3 LossFunction.pm6
+=head4 LossFunction.pm6
 
 This has loss and BayesianLoss methods based upon a hypothesis 
 (Hypothesis.pm6), these 2 functions work as described above in Action.pm6.
 
-=head4 DecisionRule.pm6, Risk functions
+=head5 DecisionRule.pm6, Risk functions
 
 decide-on-risk($action) caclculates the BayesianLoss on a randomly selected
 probability, on Bayes::Learn::Action $action, where the believed chance
 is in [0,1] = the selected probability out of its attribute, a 
 Mathx::Stat::DistributionPopulation. 
 
-=head5 Strategy.pm6
+=head6 Strategy.pm6
 
 A Strategy has a Mathx::Stat::DistributionPopulation superclass.
 The method minimax(@condps) gives a minimax value, to be used in the infimum, 
 for a minimum probability of strategies. It returns the supremum of the
 BayesianLoss of each strategy.
 
-=head6 End notes and Bibliography
+=head7 End notes and Bibliography
 
 Most of this module is not about Bayesian Inference, but about decision theory.
 The MAP (maximum a posteriori) is the learning system of probability
@@ -85,4 +94,4 @@ This package is based upon the following book :
 
 The MAP (maximum a posteriori) methods were found with a google search.
 
-=end Game-Bayes
+=end pod
