@@ -2,13 +2,6 @@ use v6.c;
 use Test;      # a Standard module included with Rakudo 
 use lib 'lib';
 
-use Game::Bayes::Action;
-use Game::Bayes::DecisionRule;
-use Game::Bayes::Hypothesis;
-use Game::Bayes::LossFunction;
-use Game::Bayes::RiskFunction;
-use Game::Bayes::Strategy;
-
 my $num-tests = 6;
 
 plan $num-tests;
