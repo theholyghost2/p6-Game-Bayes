@@ -21,4 +21,13 @@ class RiskGame::Terminal
 		return $answer;
 	}
 
+	### print the room/battle-field in ascii
+	method paint-room($room) {
+		say $room.battle-field-ascii;
+	}
+
+	method repaint-room($room) {
+		self.paint-room($room);
+	}
+
 }
