@@ -32,5 +32,8 @@ class RiskGame::PlayerBase
 
 	}
 
+	multi method play-a-round($room) {
+
+	}
 
 }

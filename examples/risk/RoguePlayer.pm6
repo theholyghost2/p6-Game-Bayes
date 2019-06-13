@@ -14,4 +14,8 @@ class RiskGame::RoguePlayer is PlayerBase
 		
 	}
 
+	multi method play-a-round($room) {
+
+	}
+
 }

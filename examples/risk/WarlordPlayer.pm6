@@ -14,4 +14,8 @@ class RiskGame::WarlordPlayer is PlayerBase
 		
 	}
 
+	multi method play-a-round($room) {
+
+	}
+
 }
