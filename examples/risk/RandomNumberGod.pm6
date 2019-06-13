@@ -11,15 +11,15 @@ class RiskGame::RandomNumberGod
 	}
 
 	method roll-d2 {
-		return 2.rand.Int;
+		return 1..2.rand.Int;
 	}
 
 	method roll-d4 {
-		return 4.rand.Int;
+		return 1..4.rand.Int;
 	}
 
 	method roll-d6 {
-		return 6.rand.Int;
+		return 1..6.rand.Int;
 	}
 
 
