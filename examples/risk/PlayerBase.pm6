@@ -5,13 +5,16 @@ use Terminal;
 
 unit module RiskGame;
 
+### This class can be used for a risk-o-matic, computer players and keyboard
+### controlled players
+
 class RiskGame::PlayerBase
 {
 
 	has $.terminal is rw;
 
-	submethod BUILD(:$c) {
-		$!count = $c;
+	submethod BUILD() {
+		
 	}
 
 	multi method before-attack-region($region) {
