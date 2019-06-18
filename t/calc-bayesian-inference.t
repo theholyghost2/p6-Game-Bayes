@@ -42,11 +42,11 @@ is-deeply $strategy.minimax(@plist), $strategy.minimax(@plist);
 
 my $s = 0.1;
 $strategy.addStrategy($s);
-my $s = 0.1;
+$s = 0.1;
 $strategy.addStrategy($s);
-my $s = 0.1;
+$s = 0.1;
 $strategy.addStrategy($s);
-my $s = 0.1;
+$s = 0.1;
 $strategy.addStrategy($s);
 
 is-deeply $strategy.randomstrategyminimax(@plist), $strategy.randomstrategyminimax(@plist);
