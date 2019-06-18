@@ -4,8 +4,10 @@ use lib 'lib';
 
 use Game::Bayes::Action;
 use Game::Bayes::Hypothesis;
+use Game::Bayes::LossFunction;
+use Game::Bayes::Strategy;
 
-my $num-tests = 4;
+my $num-tests = 8;
 
 plan $num-tests;
  
@@ -27,6 +29,17 @@ my $actionl = Game::Bayes::Action.new(actiondistrib => @plist);
 
 is-deeply $actionl.Loss(0.1, 0.2), $actionl.Loss(0.1, 0.2);
 is-deeply $actionl.BayesianLoss(0.3), $actionl.BayesianLoss(0.3);
+
+my $lossf = Game::Bayes::LossFunction.new(ddistribution => @plist);
+
+is-deeply $lossf.Loss(@plist), $lossf.Loss(@plist);
+is-deeply $lossf.BayesianLoss(@plist), $lossf.BayesianLoss(@plist);
+
+my @lossfuncs = <$lossf>;
+my $strategy = Game::Bayes::Strategy.new(lossfuncs => @lossfuncs);
+
+is-deeply $strategy.minimax(@plist), $strategy.minimax(@plist);
+is-deeply $strategy.randomstrategyminimax(@plist), $strategy.randomstrategyminimax(@plist);
 
 my $bayesl = Game::Bayes::Hypothesis.new( distribution => @plist);
 

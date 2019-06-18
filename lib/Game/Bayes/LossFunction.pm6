@@ -13,7 +13,7 @@ class Game::Bayes::LossFunction {
 
 	}
 
-	method loss(@condps) { ### The integral inside loss is a Riemann sum
+	method Loss(@condps) { ### The integral inside loss is a Riemann sum
 
 		my $prob = Game::Stats::Probability.new(xpop => $.hypothesis.population);
 		my $sum = 0.0;

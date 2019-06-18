@@ -20,7 +20,7 @@ class Game::Bayes::Strategy is Game::Stats::DistributionPopulation {
 
 		my $sup = 0.0.	
 
-		for @.population -> $f {
+		for @!population -> $f {
 			my $loss = $f.BayesianLoss(@condps);
 			if ($loss > $sup) {
 				$sup = $loss;
