@@ -16,6 +16,7 @@ class RiskGame::Terminal
 
 	method read-answer {
 
+		### my $asnwer = get;
 		my $answer = prompt "What do you want to do ?";
 
 		return $answer;
