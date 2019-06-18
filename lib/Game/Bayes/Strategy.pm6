@@ -7,7 +7,7 @@ class Game::Bayes::Strategy is Game::Stats::DistributionPopulation {
 
 	method BUILD(:@lossfuncs) {
 		@.population = @lossfuncs; ### LossFunction instances
-		@.strategypopulation = new Game::Stats::Population();
+		@.strategypopulation = Game::Stats::Population.new;
 	}
 
 	method addStrategy($s) {

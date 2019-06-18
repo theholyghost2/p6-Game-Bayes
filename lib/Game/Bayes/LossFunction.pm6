@@ -1,7 +1,7 @@
 use v6.c;
 
 use Game::Bayes::Hypothesis;
-use Game::Stats:Probability;
+use Game::Stats::Probability;
 
 class Game::Bayes::LossFunction {
 
@@ -15,7 +15,7 @@ class Game::Bayes::LossFunction {
 
 	method loss(@condps) { ### The integral inside loss is a Riemann sum
 
-		my $prob = new Game::Stats::Probability($.hypothesis.population);
+		my $prob = Game::Stats::Probability.new(xpop => $.hypothesis.population);
 		my $sum = 0.0;
 
 		loop (my $i = 0.0; $i < $.hypothesis.population.elems; $i++) {
@@ -26,7 +26,7 @@ class Game::Bayes::LossFunction {
 
 	method BayesisanLoss(@condps) {
 
-		my $prob = new Probability($.hypothesis.population);
+		my $prob = Game::Stats::Probability.new(xpop => $.hypothesis.population);
 		my $sum = 0.0;
 
 		my @array = 0..^$.hypothesis.population.elems;

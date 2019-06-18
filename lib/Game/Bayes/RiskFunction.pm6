@@ -9,7 +9,7 @@ class Game::Bayes::RiskFunction {
 
 	method BUILD(:@ddistribution) {
 		
-		$.hypothesis = Game::Bayes::Hypothesis.new(@ddistribution);
+		$.hypothesis = Game::Bayes::Hypothesis.new(distribution => @ddistribution);
 
 	}
 
