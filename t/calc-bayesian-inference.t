@@ -39,6 +39,16 @@ my @lossfuncs = <$lossf>;
 my $strategy = Game::Bayes::Strategy.new(lossfuncs => @lossfuncs);
 
 is-deeply $strategy.minimax(@plist), $strategy.minimax(@plist);
+
+my $s = 0.1;
+$strategy.addStrategy($s);
+my $s = 0.1;
+$strategy.addStrategy($s);
+my $s = 0.1;
+$strategy.addStrategy($s);
+my $s = 0.1;
+$strategy.addStrategy($s);
+
 is-deeply $strategy.randomstrategyminimax(@plist), $strategy.randomstrategyminimax(@plist);
 
 my $bayesl = Game::Bayes::Hypothesis.new( distribution => @plist);
