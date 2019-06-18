@@ -36,7 +36,7 @@ class Game::Bayes::Strategy is Game::Stats::DistributionPopulation {
 						### probability
 		my $sup = 0.0.	
 
-		loop (my $i = 0; $i < 0..^@.strategypopulation.population.elems.rand)
+		loop (my $i = 0; $i < @.strategypopulation.population.elems.rand)
 		 {
 			my $loss = self.minimax(@condps);
 			if ($loss > $sup) {
