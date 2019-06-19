@@ -5,6 +5,10 @@ countries
 
 *** An example with putting the numbers between [0,1], instead of the approximations
 
-*** An example using Hawking temperature (Boltzmann function, T=10) approx.
-for Bayes prob. Can also use a Taylor expansion for numerical analysis.
+*** An example using Hawking temperature (Boltzmann function, T=10 or 
+T = Hawking) approx. for Bayes prob. Can also use a Taylor expansion for 
+numerical analysis.
 
+*** Age of Empires 3 ripoff demo using pagan (SDL2::Raw, SDL, Cairo graphics)
+
+*** games using ncurses
