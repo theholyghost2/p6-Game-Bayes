@@ -23,6 +23,7 @@ class Game::Bayes::Action is Game::Stats::DistributionPopulation {
 
 
 	### Bayesian Expected Loss E[A] * Loss(p,a) of action a
+	### The integral approximation in this function is a potential
 	method BayesianLoss($believedp) { ### believedp is about an action between [0,1]
 
 		my $sum = 0.0;
