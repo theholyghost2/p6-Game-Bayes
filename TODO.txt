@@ -1,0 +1,10 @@
+GAME::BAYES
+
+*** Game of Risk in examples, print (non-curses) rectangles of neighbouring
+countries
+
+*** An example with putting the numbers between [0,1], instead of the approximations
+
+*** An example using Hawking temperature (Boltzmann function, T=10) approx.
+for Bayes prob. Can also use a Taylor expansion for numerical analysis.
+
