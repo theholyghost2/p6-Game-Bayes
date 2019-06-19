@@ -7,7 +7,7 @@ use Game::Bayes::Hypothesis;
 use Game::Bayes::LossFunction;
 use Game::Bayes::Strategy;
 
-my $num-tests = 8;
+my $num-tests = 7;
 
 plan $num-tests;
  
@@ -49,7 +49,7 @@ $strategy.addStrategy($s);
 $s = 0.1;
 $strategy.addStrategy($s);
 
-is-deeply $strategy.randomstrategyminimax(@plist), $strategy.randomstrategyminimax(@plist);
+###FIXME is-deeply $strategy.randomstrategyminimax(@plist), $strategy.randomstrategyminimax(@plist);
 
 my $bayesl = Game::Bayes::Hypothesis.new( distribution => @plist);
 
