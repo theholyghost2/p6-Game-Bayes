@@ -7,7 +7,9 @@ countries, risk-o-matic (automatic play between non-player characters.)
 
 *** An example using Hawking temperature (Boltzmann function, T=10 or 
 T = Hawking) approx. for Bayes prob. Can also use a Taylor expansion for 
-numerical analysis.
+numerical analysis. calculate difference between 2 probabilities (a loss
+function) using as value of $believedp, statistics on a value of a Hawking
+temperature as temperature in a Boltzmann function. Keep the temp constant.
 
 *** Age of Empires 3 ripoff demo using pagan (SDL2::Raw, SDL, Cairo graphics) or
 automatic play without graphics
