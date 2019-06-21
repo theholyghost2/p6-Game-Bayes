@@ -16,7 +16,7 @@ class HawkingModel::Temperature
 
 	has $.T is rw;
 
-	submethod BUILD(:$m = 1.98847 * pow(10,30)) {
+	submethod BUILD(:$m = 1.98847 * 10 ** 30) {
 		$!Planck-constant = 6.62607015 * 10 ** -34;
 		$!c = 3000000000;
 		$!G = 6.67430 * 10 ** -11;
