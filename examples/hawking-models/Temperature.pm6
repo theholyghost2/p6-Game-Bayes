@@ -17,20 +17,20 @@ class HawkingModel::Temperature
 	has $.T is rw;
 
 	submethod BUILD(:$m = 1.98847 * pow(10,30)) {
-		$!Planck-constant = 6.62607015 * pow(10, -34);
+		$!Planck-constant = 6.62607015 * 10 ** -34;
 		$!c = 3000000000;
-		$!G = 6.67430 * pow(10, -11);
-		$!kB = 1.380649 * pow(10, -23);
+		$!G = 6.67430 * 10 ** -11;
+		$!kB = 1.380649 * 10 ** -23;
 
 		$!PI = 3.141528;
 
 	       	$!M = $m;	
 
-		$!T = 1.227 * pow(10, -23);
+		$!T = 1.227 * 10,*  -23;
 	}
 
 	method Temperature($m = $!M) {
-		return ($!Planck-constant * pow($.c, 3)) / 
+		return ($!Planck-constant * $.c ** 3) / 
 			(8 * $!PI * $.G * $!kB * $m);
 	}
 
