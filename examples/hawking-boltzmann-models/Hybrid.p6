@@ -10,6 +10,8 @@ sub loss {
 	my $ht = Temperature.new;
 
 	### add some energies of states to the (Boltzmann) distribution
+	### using black hole masses as an argument
+	
 	$hbd.add($hbf.energy-probability($ht.Temperature(0.1 * 10 ** 30));
 	$hbd.add($hbf.energy-probability($ht.Temperature(0.2 * 10 ** 30));
 	$hbd.add($hbf.energy-probability($ht.Temperature(0.3 * 10 ** 30));
