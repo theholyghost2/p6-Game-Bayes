@@ -1,12 +1,12 @@
 ### See the LICENSE file for details
 ### use v6.0;
 
-unit module HawkingModel;
+unit module HawkingBoltzmannModel;
 
-class HawkingModel::Temperature
+class HawkingBoltzmannModel::Temperature
 {
 
-	has $.Planck-constant is rw;
+	has $.h is rw; ### Planck's constant
 	has $.c is rw; ### speed of light
 	has $.G is rw; ### Gravitational constant
 	has $.kB is rw; ### Boltzmann constant
@@ -17,7 +17,7 @@ class HawkingModel::Temperature
 	has $.T is rw;
 
 	submethod BUILD(:$m = 1.98847 * 10 ** 30) {
-		$!Planck-constant = 6.62607015 * 10 ** -34;
+		$!h = 6.62607015 * 10 ** -34;
 		$!c = 3000000000;
 		$!G = 6.67430 * 10 ** -11;
 		$!kB = 1.380649 * 10 ** -23;
@@ -30,8 +30,12 @@ class HawkingModel::Temperature
 	}
 
 	method Temperature($m = $!M) {
-		return ($!Planck-constant * $.c ** 3) / 
+		return ($!h * $.c ** 3) / 
 			(8 * $!PI * $.G * $!kB * $m);
+	}
+
+	method constant-temperature {
+		return $!T;
 	}
 
 }
