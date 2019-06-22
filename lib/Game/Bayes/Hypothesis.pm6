@@ -18,7 +18,7 @@ class Game::Bayes::Hypothesis is Game::Stats::DistributionPopulation {
 		my $prob = Game::Stats::Probability.new(xpop => @.population);		
 		my $condprob = Game::Stats::Probability.new( xpop => @condps); 
 
-		my @indices = 0..^@.population.elems;
+		my @indices = 0..^@.population.elems; ### FIXME
 
 		return $prob.Bayes(@indices, $condprob.population, $hidx);
 	}
