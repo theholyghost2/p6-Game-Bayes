@@ -4,6 +4,7 @@ use Temperature;
 
 use Game::Bayes::Action;
 use Game::Bayes::LossFunction;
+use Game::Bayes::Strategy;
 
 sub loss {
 	my $hbd = BoltzmannDistribution.new;
