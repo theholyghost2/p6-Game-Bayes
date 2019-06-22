@@ -3,6 +3,7 @@ use BoltzmannFunction;
 use Temperature;
 
 use Game::Bayes::Action;
+use Game::Bayes::LossFunction;
 
 sub loss {
 	my $hbd = BoltzmannDistribution.new;
@@ -35,6 +36,15 @@ sub loss {
 	say $action.Loss($hbd.nth(2), $hbd.nth(3));
 	say $action.Loss($hbd.nth(3), $hbd.nth(4));
 
+	my $lossf = Game::Bayes::LossFunction.new(ddistribution => @hbd.population);
+	### print the loss on the Boltzmann function values
+	say $lossf.BayesianLoss(@hbd.population);
+
+	### print the strategy minimax value
+	my @lossfuncs = <$lossf>;
+	my $strategy = Game::Bayes::Strategy.new(lossfuncs => @lossfuncs);
+
+	say $strategy.minimax(@hbd.population);
 }
 
 ### loss();
