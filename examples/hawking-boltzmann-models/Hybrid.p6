@@ -18,7 +18,7 @@ sub loss {
 
 	my $action = Game::Bayes::Action.new(actiondistrib => $hbd.population);
 
-	### constant (Hawking) temperature
+	### constant (Hawking) temperature, in general it needs to be the above
 	my $hbd-energies = BoltzmannDistribution.new;
 
 	$hbd-energies.add($action.BayesianLoss($hbd.nth-energy-probability(0));
@@ -27,6 +27,11 @@ sub loss {
 	$hbd-energies.add($action.BayesianLoss($hbd.nth-energy-probability(3));
 	$hbd-energies.add($action.BayesianLoss($hbd.nth-energy-probability(4));
 
+	### print the losses on the Boltzmann distribution elements
+	say $action.Loss($hbd.nth(0), $hbd.nth(1));
+	say $action.Loss($hbd.nth(1), $hbd.nth(2));
+	say $action.Loss($hbd.nth(2), $hbd.nth(3));
+	say $action.Loss($hbd.nth(3), $hbd.nth(4));
 
 }
 
