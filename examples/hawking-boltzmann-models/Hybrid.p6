@@ -20,7 +20,7 @@ sub loss {
 	$hbd.add($hbf.energy-probability($ht.Temperature(0.4 * 10 ** 30));
 	$hbd.add($hbf.energy-probability($ht.Temperature(0.5 * 10 ** 30));
 
-	my $action = Game::Bayes::Action.new(actiondistrib => $hbd.population);
+	my $action = Game::Bayes::Action.new(actiondistrib => @hbd.population);
 
 	### constant (Hawking) temperature, in general it needs to be the above
 	my $hbd-energies = BoltzmannDistribution.new;
