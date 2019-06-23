@@ -3,7 +3,7 @@
 
 unit module HawkingBoltzmannModel;
 
-class HawkingBoltzmannModel::Temperature
+class HawkingBoltzmannModel::HawkingTemperature
 {
 
 	has $.h is rw; ### Planck's constant

@@ -1,6 +1,6 @@
 use BoltzmannDistribution; 
 use BoltzmannFunction; 
-use Temperature;
+use HawkingTemperature;
 
 use Game::Bayes::Action;
 use Game::Bayes::LossFunction;
@@ -9,7 +9,7 @@ use Game::Bayes::Strategy;
 sub loss {
 	my $hbd = BoltzmannDistribution.new;
 	my $hbf = BoltzmannFunction.new;
-	my $ht = Temperature.new;
+	my $ht = HawkingTemperature.new;
 
 	### add some energies of states to the (Boltzmann) distribution
 	### using black hole masses as an argument
