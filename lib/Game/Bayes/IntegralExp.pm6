@@ -13,7 +13,7 @@ class Game::Bayes::IntegralExp
 
 	method GaussPprobability($b, $a, $mu, $sigma) {
 
-		return self.GaussIntegralFunctionality($mu, $sigma, $b, $a);
+		return self.GaussIntegralFunctionality($mu, $sigma, $b) -  self.GaussIntegralFunctionality($mu, $sigma, $a);
 	}
 
 	method Integral($high, $low) {
