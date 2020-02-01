@@ -27,9 +27,11 @@ class Game::Bayes::IntegralExp
 
 	}	
 
+	### using chain rule for g(x) = $sigma
 	method GaussIntegralFunctionality($mu, $sigma, $expvalue) {
 
-		return exp(-1 * ($expvalue - $mu) / $sigma) / (* -1 ($expvalue - $mu) / $sigma);
+		return exp(-1 * ($expvalue - $mu) / $sigma) / $sigma + 
+				(-1 * ($expvalue - $mu)) / $sigma;
 
 	}	
 
