@@ -7,13 +7,13 @@ class Game::Bayes::IntegralExp
 	}
 
 
-	### calculation of e.g. Gauss curve 
+	### calculation of e.g. Gauss curve probability 
 	### the exp function power, the probability which is the integral of exp
 	### with high bound $b and lower bound $a
 
-	method probability($b, $a) {
+	method GaussPprobability($b, $a, $mu, $sigma) {
 
-		return self.Integral($b, $a);
+		return self.GaussIntegralFunctionality($mu, $sigma, $b, $a);
 	}
 
 	method Integral($high, $low) {
@@ -24,6 +24,12 @@ class Game::Bayes::IntegralExp
 	method IntegralFunctionality($expvalue) {
 
 		return exp($expvalue) / $expvalue;
+
+	}	
+
+	method GaussIntegralFunctionality($mu, $sigma, $expvalue) {
+
+		return exp(-1 * ($expvalue - $mu) / $sigma) / (* -1 ($expvalue - $mu) / $sigma);
 
 	}	
 
