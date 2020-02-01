@@ -13,7 +13,10 @@
             "Game::Bayes::LossFunction" : "lib/Game/Bayes/LossFunction.pm6",
             "Game::Bayes::RiskFunction" : "lib/Game/Bayes/RiskFunction.pm6",
             "Game::Bayes::DecisionRule" : "lib/Game/Bayes/DecisionRule.pm6",
-            "Game::Bayes::Strategy" : "lib/Game/Bayes/Strategy.pm6"
+            "Game::Bayes::Strategy" : "lib/Game/Bayes/Strategy.pm6",
+            "Game::Bayes::IntegralExp" : "lib/Game/Bayes/IntegralExp.pm6",
+            "Game::Bayes::Interval" : "lib/Game/Bayes/Interval.pm6",
+            "Game::Bayes::PosteriorApproximation" : "lib/Game/Bayes/PosteriorApproximation.pm6"
         },
         "depends" : [ "Game::Stats" ],
         "build-depends" : [ ],
