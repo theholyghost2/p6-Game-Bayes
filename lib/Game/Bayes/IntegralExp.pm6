@@ -42,9 +42,9 @@ class Game::Bayes::IntegralExp
 	### full integral, squared function, no sqrt(2*Pi)
 	method GaussIntegralFunctionality2($mu, $sigma, $expvalue) {
 
-		return exp((-1 - $mu) / $sigma) * 2 * (-1 - $mu) / $sigma * 
-				((-1 * ($expvalue - $mu) / $sigma) / $sigma + 
-				(-1 * ($expvalue - $mu) / $sigma));
+		return exp(- 1 / 2 * (-1 - $mu) / $sigma) * 2 * (-1 - $mu) / $sigma * 
+				((-1 / 2 * ($expvalue - $mu) / $sigma) / $sigma + 
+				(-1 / 2 * ($expvalue - $mu) / $sigma));
 
 	}	
 
