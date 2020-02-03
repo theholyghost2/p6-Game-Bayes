@@ -11,9 +11,10 @@ class Game::Bayes::IntegralExp
 	### the exp function power, the probability which is the integral of exp
 	### with high bound $b and lower bound $a
 
-	method GaussPprobability($b, $a, $mu, $sigma) {
-
-		return self.GaussIntegralFunctionality($mu, $sigma, $b) -  self.GaussIntegralFunctionality($mu, $sigma, $a);
+	method GaussProbability($b, $a, $mu, $sigma) {
+		### FIXME Perl 6 Pi
+		return 1 / ($sigma * sqrt(2 * 3.14152829)) * self.GaussIntegralFunctionality2($mu, $sigma, $b) -  
+		 (1 / ($sigma * sqrt(2 * 3.14152829)) * self.GaussIntegralFunctionality2($mu, $sigma, $a);
 	}
 
 	method Integral($high, $low) {
@@ -27,12 +28,25 @@ class Game::Bayes::IntegralExp
 
 	}	
 
-	### using chain rule for f(x) = -1 - $mu and g(x) = $sigma
+	### minimal integral, no Pi or square power, see GaussProbability 
+	### otherwise
+	### using quotient rule for f(x) = -1 - $mu and g(x) = $sigma
 	method GaussIntegralFunctionality($mu, $sigma, $expvalue) {
 
-		return exp(-1 * ($expvalue - $mu) / $sigma) / $sigma + 
-				(-1 * ($expvalue - $mu)) / $sigma;
+		return exp((-1 - $mu) / $sigma) * 
+				((-1 * ($expvalue - $mu) / $sigma) / $sigma + 
+				(-1 * ($expvalue - $mu) / $sigma));
 
 	}	
+
+	### full integral, squared function, no sqrt(2*Pi)
+	method GaussIntegralFunctionality2($mu, $sigma, $expvalue) {
+
+		return exp((-1 - $mu) / $sigma) * 2 * (-1 - $mu) / $sigma * 
+				((-1 * ($expvalue - $mu) / $sigma) / $sigma + 
+				(-1 * ($expvalue - $mu) / $sigma));
+
+	}	
+
 
 }	
