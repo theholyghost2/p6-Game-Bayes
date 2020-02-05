@@ -7,15 +7,19 @@ class Game::Bayes::PosteriorGridApproximation
 	has @.intervals is rw;
 	has @.interval-widths is rw;
 
-	method BUILD() {
+	submethod BUILD() {
 
 		
 
 	}
 
-	method addInterval($b, $a, $N) {
+	method addInterval($b, $a) {
 		push (@.intervals, Game::Bayes::Interval.new($b, $a));
-		push (@.interval-widths, ($b - $a) / $N); ### NOTE : needs to be divided by N, which is the total number of intervals 
+		### NOTE : needs to be divided by N, which is the 
+		### total number of intervals which is auto-updated here : 
+		
+		my $N = @.intervals.elems;
+		push (@.interval-widths, ($b - $a) * ($N - 1) / $N);
 	}
 
 	multi method generateIntervals($a) {
@@ -39,5 +43,12 @@ class Game::Bayes::PosteriorGridApproximation
 		}
 
 		return 1 / $width * ( @midpointsp[0] / $sum );
+	}
+
+	### @midpointp is q(theta(i) | y), hereunder
+	method approximationp(@midpointps, $width, $midpointp) {
+
+		return $midpointp / self.approximation-c(@midpointps, $width); 	
+
 	}
 }	
