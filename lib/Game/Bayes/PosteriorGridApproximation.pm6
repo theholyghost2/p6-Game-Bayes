@@ -5,7 +5,7 @@ use v6.c;
 class Game::Bayes::PosteriorGridApproximation
 {
 	has @.intervals is rw;
-	has @.interval-widths is rw;
+	has @.interval-widths is rw; ### width = h = (b - a) / N
 
 	submethod BUILD() {
 
@@ -20,6 +20,11 @@ class Game::Bayes::PosteriorGridApproximation
 		
 		my $N = @.intervals.elems;
 		push (@.interval-widths, ($b - $a) * ($N - 1) / $N);
+	
+		### adjust widths of the other intervals	
+		loop (my $i = 0; $i < @.interval-widths.elems - 1; $i++) {
+			@.interval-widths[$i] = (@.intervals[$i].upper - @.intervals[$i].lower)  * ($N - 1) / $N;
+		}
 	}
 
 	multi method generateIntervals($a) {
@@ -38,11 +43,12 @@ class Game::Bayes::PosteriorGridApproximation
 
 		my $sum = 0.0;
 
-		loop (my $i = 0; $i < @midpointsp.elems; $i++) {
+		loop (my $i = 0; $i < @midpointps.elems; $i++) {
 			$sum += @midpointps[$i];
 		}
 
-		return 1 / $width * ( @midpointsp[0] / $sum );
+		### index 0 here is a default width (h) 
+		return $width * $sum;
 	}
 
 	### @midpointp is q(theta(i) | y), hereunder
