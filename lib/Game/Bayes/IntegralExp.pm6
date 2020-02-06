@@ -11,7 +11,7 @@ class Game::Bayes::IntegralExp
 	### the exp function power, the probability which is the integral of exp
 	### with high bound $b and lower bound $a
 
-	method GaussProbability($b, $a, $mu, $sigma) {
+	method Probability($b, $a, $mu = 0, $sigma = 1) {
 		### FIXME Perl 6 Pi
 		return 1 / ($sigma * sqrt(2 * 3.14152829)) * self.GaussIntegralFunctionality2($mu, $sigma, $b) -  
 		 (1 / ($sigma * sqrt(2 * 3.14152829)) * self.GaussIntegralFunctionality2($mu, $sigma, $a);
@@ -28,7 +28,7 @@ class Game::Bayes::IntegralExp
 
 	}	
 
-	### minimal integral, no Pi or square power, see GaussProbability 
+	### minimal integral, no Pi or square power, see Probability 
 	### otherwise
 	### using quotient rule for f(x) = -1 - $mu and g(x) = $sigma
 	method GaussIntegralFunctionality($mu, $sigma, $expvalue) {

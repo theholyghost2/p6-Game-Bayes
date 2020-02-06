@@ -9,12 +9,11 @@ class Game::Bayes::PosteriorGridApproximation
 
 	submethod BUILD() {
 
-		
-
 	}
 
-	### interval-widths are the same over all intervals by using this method
-	multi method addInterval($b, $a) {
+	### interval-widths are made the same over all intervals by using this 
+	### method based on numberof intervals
+	multi method addIntervalWithUpdate($b, $a) {
 		push (@.intervals, Game::Bayes::Interval.new($b, $a, @.intervals.elems));
 		### NOTE : needs to be divided by N, which is the 
 		### total number of intervals which is auto-updated here : 
@@ -22,13 +21,30 @@ class Game::Bayes::PosteriorGridApproximation
 		my $N = @.intervals.elems;
 		push (@.interval-widths, ($b - $a) * ($N - 1) / $N);
 	
-		### adjust widths of the other intervals	
+		### adjust widths and midpoint of the other intervals	
 		loop (my $i = 0; $i < @.interval-widths.elems - 1; $i++) {
 			@.interval-widths[$i] = (@.intervals[$i].upper - @.intervals[$i].lower)  * ($N - 1) / $N;
-			@.intervals[$i].set-midpoint($N)
+			@.intervals[$i].set-midpoint(($b - $a) / $N)
 		}
 
 		
+	}
+
+	multi method addIntervalNoUpdate($b, $a, $N = @.intervals.elems) {
+
+		push (@.intervals, Game::Bayes::Interval.new($b, $a, $N));
+		@.intervals[@.intervals.elems - 1].set-midpoint(($b - $a) / $N);
+		push (@.interval-widths, ($b - $a) / $N);
+
+	}
+
+	### method with specific interval width, $N gets changed in the
+	### above addIntervalWithUpdate method
+	multi method addInterval($b, $a, $N) {
+		push (@.intervals, Game::Bayes::Interval.new($b, $a, $N));
+		@.intervals[@.intervals.elems - 1].set-midpoint(($b - $a) / $N);
+		push (@.interval-widths,  ($b - $a) / $N);
+
 	}
 
 	multi method generateIntervals($a) {
@@ -57,6 +73,15 @@ class Game::Bayes::PosteriorGridApproximation
 		return $width * $sum;
 	}
 
+	### Gauss Integral method of approximation-c for Bayesian Learning
+	### Gauss Integral is a uniformly distributed probability (IntegralExp)
+	### standard normal as a default case $mu = mean = 0, $sigma = 1
+	method approximation-c2($midpointp, $mu = 0, $sigma = 1) {
+		my $p = Game::Bayes::IntegralExp.new;
+		
+		return $midpointp / $p.Probability(@.intervals.elems,1);	
+	}
+
 	### Use approximationp below to calculate the approximation of 
 	### the posterior
 	
@@ -66,6 +91,13 @@ class Game::Bayes::PosteriorGridApproximation
 	method approximationp(@midpointps, $width, $midpointp) {
 
 		return $midpointp / self.approximation-c(@midpointps, $width); 	
+
+	}
+
+	### Bayesian Learning method
+	method BayesLearn($midpointp, $mu = 0, $sigma = 1) {
+
+		return self.approximation-c2($midpointp, $mu, $sigma); 	
 
 	}
 }	
