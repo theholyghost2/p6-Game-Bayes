@@ -76,10 +76,10 @@ class Game::Bayes::PosteriorGridApproximation
 	### Gauss Integral method of approximation-c for Bayesian Learning
 	### Gauss Integral is a uniformly distributed probability (IntegralExp)
 	### standard normal as a default case $mu = mean = 0, $sigma = 1
-	method approximation-c2($midpointp, $mu = 0, $sigma = 1) {
+	method approximation-c2($midpointp, $N = @.intervals.elems, $mu = 0, $sigma = 1) {
 		my $p = Game::Bayes::IntegralExp.new;
 		
-		return $midpointp / $p.Probability(@.intervals.elems,1);	
+		return $midpointp / $p.Probability($N, 1);	
 	}
 
 	### Use approximationp below to calculate the approximation of 
@@ -95,9 +95,9 @@ class Game::Bayes::PosteriorGridApproximation
 	}
 
 	### Bayesian Learning method
-	method BayesLearn($midpointp, $mu = 0, $sigma = 1) {
+	method BayesLearn($midpointp, $N = @.intervals.elems, $mu = 0, $sigma = 1) {
 
-		return self.approximation-c2($midpointp, $mu, $sigma); 	
+		return self.approximation-c2($midpointp, $N, $mu, $sigma); 	
 
 	}
 }	
